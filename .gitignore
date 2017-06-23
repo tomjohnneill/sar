@@ -1,0 +1,16 @@
+.DS_Store
+.bundle/
+.project
+.settings/*
+coverage.data
+coverage/
+db/development.sqlite3
+db/staging.sqlite3
+db/test.sqlite3
+log/
+public/assets/
+public/system/
+public/rich/
+reports/
+tmp/
+vendor/cache
