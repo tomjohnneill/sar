@@ -6,7 +6,7 @@ Hello
 [
   {
     "brma": "Some Name",
-    "government_allowance_percentage": 73
+    "government_allowance_percentage": 73,
     "government_allowance": 590,
     "average_rent": {
       "spareroom": 830,
