@@ -14,5 +14,16 @@ Hello
   }
 ]
 
-#brma
+### brma
 Broad Rental Market Areas
+
+### User flow
+User enters postcode
+User hits submit
+Calculate BRMA from postcode (cache)
+Get goverment allowance from BRMA
+Scrape Spareroom to get number of result pages
+Scrape each Spareroom page and grab rent prices
+Calculate Spareroom average rent for postcode
+Compare discrepancy between goverment allowance and Spareroom average
+Present to user
