@@ -1,0 +1,28 @@
+rails:
+  build: .
+  command: ./dev.sh
+  volumes:
+    - .:/app
+  volumes_from:
+    - bundle
+  ports:
+    - "3000:3000"
+  links:
+    - db
+  environment:
+    DATABASE_HOST: db
+    MYSQL_USER: root
+    MYSQL_PASSWORD: root
+
+bundle:
+  image: busybox
+  volumes:
+    - /bundle
+
+db:
+  image: mysql:5.7.18
+  ports:
+    - "13306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+  command: mysqld --max_allowed_packet=60M

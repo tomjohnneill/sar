@@ -2,6 +2,7 @@ Hello
 
 ### JSON structure exposed to frontend
 
+```json
 [
   {
     "brma": "Some Name",
@@ -13,6 +14,7 @@ Hello
     }
   }
 ]
+```
 
 ### brma
 Broad Rental Market Areas
@@ -27,3 +29,21 @@ Scrape each Spareroom page and grab rent prices
 Calculate Spareroom average rent for postcode
 Compare discrepancy between goverment allowance and Spareroom average
 Present to user
+
+# Rails
+
+## Booting the app
+
+```sh
+docker-compose up
+```
+
+```sh
+sh rails.sh
+```
+
+## Running commands
+
+```sh
+sh rails.sh bundle exec rails db:migrate
+```
