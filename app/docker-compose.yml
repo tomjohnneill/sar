@@ -11,8 +11,9 @@ rails:
     - db
   environment:
     DATABASE_HOST: db
-    MYSQL_USER: root
-    MYSQL_PASSWORD: root
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+    POSTGRES_HOST: db
 
 bundle:
   image: busybox
@@ -20,9 +21,8 @@ bundle:
     - /bundle
 
 db:
-  image: mysql:5.7.18
+  image: postgres:9.6
   ports:
-    - "13306:3306"
+    - "15432:5432"
   environment:
-    MYSQL_ROOT_PASSWORD: root
-  command: mysqld --max_allowed_packet=60M
+    POSTGRES_PASSWORD: postgres

@@ -48,3 +48,9 @@ sh rails.sh
 ```sh
 sh rails.sh bundle exec rails db:migrate
 ```
+
+## Deploying
+
+```sh
+git subtree push --prefix app heroku master
+```
