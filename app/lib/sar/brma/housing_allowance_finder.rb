@@ -15,9 +15,7 @@ module SAR
       private
 
       def find_by(brma_number)
-        @result_row ||= parsed_csv.find do |row|
-          row['BRMAno'].to_i == brma_number
-        end
+        parsed_csv.find { |row| row['BRMAno'].to_i == brma_number }
       end
 
       def parsed_csv
