@@ -34,7 +34,7 @@ class PriceDiscrepancyReportsController < ApplicationController
   end
 
   def spareroom
-    @spareroom ||= SAR::Spareroom::SearchScraper.new.run(params[:postcode])
+    @spareroom ||= SAR::Spareroom::SearchScraper.new.run(params[:postcode], '')
   end
 
   def rooms_below_threshold
