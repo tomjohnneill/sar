@@ -33,7 +33,8 @@ module SAR
           highest_rent: highest,
           lowest_rent: lowest,
           mean_rent: mean,
-          median_rent: median
+          median_rent: median,
+          data: @data
         }
       end
 
