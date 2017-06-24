@@ -1,7 +1,7 @@
 document.forms.lookup.addEventListener('submit', function (evt) {
     evt.preventDefault();
     var xhr = new XMLHttpRequest();
-    var url = 'http://' + window.location.host + "/report?postcode=" + document.forms.lookup.elements.postcode.value;
+    var url = window.location.protocol + window.location.host + "/report?postcode=" + document.forms.lookup.elements.postcode.value;
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
           var roomData = JSON.parse(xhr.responseText);
@@ -99,9 +99,9 @@ function render(data) {
         }
     });
 
-    document.querySelector('.js-stats').innerHTML = 
-        'The rate in this area is £${data.government_allowance}<br /><br />' +
-        'Our research shows that you can afford' +
+    document.querySelector('.js-stats').innerHTML =
+        'The rate in this area is £' + data.government_allowance + '<br /><br />' +
+        'Our research shows that you can afford ' +
         (data.rooms_below_threshhold / data.number_rooms).toFixed(1) + '%' +
-        'of available homes.';
+        ' of available homes.';
 }
