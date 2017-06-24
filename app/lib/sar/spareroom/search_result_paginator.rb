@@ -1,40 +1,39 @@
 module SAR
   module Spareroom
     class SearchResultPaginator
-      def initialize(agent, search_response)
+      def initialize(agent, search_result_index_page)
         @agent = agent
-        @response = search_response
+        @response = search_result_index_page
       end
 
       def run
-        fetch_page
+        scrap_page
+        results.flatten
       end
+
+      private
 
       def results
         @results ||= []
       end
 
-      private
-
-      def current_page
-        @current_page ||= 0
-      end
-
-      def fetch_page
+      def scrap_page
         page = SearchResultPage.new(@response)
+        results << page.results
+
 
         puts "Fetched URI: #{@response.uri}"
         puts "HTTP Response: #{@response.code}"
         puts "Prices Extracted: #{page.results}"
 
         unless page.is_last?
-          next_page
+          fetch_next_page(page.next_page)
         end
       end
 
-      def next_page
-        current_page++
-        fetch_page
+      def fetch_next_page(url)
+        @response = @agent.click(url)
+        scrap_page
       end
     end
   end

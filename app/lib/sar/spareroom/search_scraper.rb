@@ -9,7 +9,6 @@ module SAR
 
         paginate = SearchResultPaginator.new(agent, index_response)
         paginate.run
-        paginate.results
       end
 
       def agent
