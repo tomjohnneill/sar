@@ -14,7 +14,7 @@ document.forms.lookup.addEventListener('submit', function (evt) {
 });
 
 function render(data) {
-    var ctx = document.getElementById("myChart").getContext('2d');
+    var ctx = document.getElementById("comparison").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
@@ -43,4 +43,32 @@ function render(data) {
         }
     });
 
+    var ctx2 = document.getElementById("distribution").getContext('2d');
+    var myChart2 = Chart.Scatter(ctx2, {
+        data: {
+            datasets: [
+                {
+                  label: "Price",
+                  borderColor: "#3e95cd",
+                  data: data.rent_distribution.map(([x, y]) => ({x, y})),
+                  fill: false
+                }
+            ]
+        },
+        options: {
+          responsive: false,
+          legend: { display: false },
+          elements: { point: { radius: 0 } },
+          title: {
+                display: true,
+                text: 'Government distribution'
+            },
+            scales: {
+                xAxes: [{ticks: {min: 0}}],
+                yAxes: [{ticks: {min: 0}}]
+            }
+        }
+    });
 }
+
+console.log('here');
