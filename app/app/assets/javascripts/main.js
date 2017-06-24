@@ -21,24 +21,34 @@ function render(data) {
         type: 'horizontalBar',
         data: {
             labels: [
-                'Allowance',
+                '',
+                'Median',
                 'Lowest',
                 'Highest'
             ],
             datasets: [
                 {
+                  label: "Allowance",
+                  backgroundColor: "#3e9500",
+                  data: [
+                      data.government_allowance
+                  ]
+                },
+                {
                   label: "LHA",
                   backgroundColor: "#3e95cd",
                   data: [
-                      data.rent_distribution[50][1],
-                      data.rent_distribution[0][1],
-                      data.rent_distribution.slice(-1)[0][1]
+                      0,
+                      data.rent_distribution.values[50][1],
+                      data.rent_distribution.values[0][1],
+                      data.rent_distribution.values.slice(-1)[0][1]
                   ]
                 },
                 {
                   label: "Spare room",
                   backgroundColor: "#8e5ea2",
                   data: [
+                      0,
                       data.results.spareroom.median_rent,
                       data.results.spareroom.lowest_rent,
                       data.results.spareroom.highest_rent
@@ -63,10 +73,12 @@ function render(data) {
         data: {
             datasets: [
                 {
-                  label: "Price",
                   borderColor: "#3e95cd",
-                  data: data.rent_distribution.map(([x, y]) => ({x, y})),
+                  data: data.rent_distribution.values.map(([x, y]) => ({x, y})),
                   fill: false
+                },
+                {
+                    data: [data.rent_distribution.lha_rate]
                 }
             ]
         },
@@ -85,7 +97,8 @@ function render(data) {
         }
     });
 
-    document.querySelector('.js-stats').textContent = `
+    document.querySelector('.js-stats').innerHTML = `
+        The rate in this area is £${data.government_allowance}<br /><br />
         Our research shows that you can afford
         ${(data.rooms_below_threshhold / data.number_rooms).toFixed(1)}%
         of available homes.
