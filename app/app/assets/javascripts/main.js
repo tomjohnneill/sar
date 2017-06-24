@@ -74,7 +74,9 @@ function render(data) {
             datasets: [
                 {
                   borderColor: "#3e95cd",
-                  data: data.rent_distribution.values.map(([x, y]) => ({x, y})),
+                  data: data.rent_distribution.values.map(function (p) {
+                      return {'x': p[0], 'y': p[1]};
+                  }),
                   fill: false
                 },
                 {
@@ -97,10 +99,9 @@ function render(data) {
         }
     });
 
-    document.querySelector('.js-stats').innerHTML = `
-        The rate in this area is £${data.government_allowance}<br /><br />
-        Our research shows that you can afford
-        ${(data.rooms_below_threshhold / data.number_rooms).toFixed(1)}%
-        of available homes.
-    `;
+    document.querySelector('.js-stats').innerHTML = 
+        'The rate in this area is £${data.government_allowance}<br /><br />' +
+        'Our research shows that you can afford' +
+        (data.rooms_below_threshhold / data.number_rooms).toFixed(1) + '%' +
+        'of available homes.';
 }
