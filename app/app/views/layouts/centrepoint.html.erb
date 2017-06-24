@@ -7,7 +7,7 @@
 <head>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag asset_url('application.css') %>
 
     <script>(function (H) { H.className = H.className.replace(/\bno-js\b/, 'js') })(document.documentElement)</script>
 
@@ -862,7 +862,7 @@ What has it found so far? At least 150,000 young people a year ask their local a
     })();
 </script>
 
-<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag javascript_url('application') %>
 
 </body>
 </html>
