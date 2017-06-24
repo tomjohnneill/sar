@@ -9,6 +9,7 @@ p spareroom
     render json: {
       brma: brma[:name],
       government_allowance: housing_allowance[:lha_rate],
+      rent_distribution: housing_allowance[:rents],
       results: {
         spareroom: {
           total_results: spareroom[:total_results],
