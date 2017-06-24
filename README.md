@@ -39,6 +39,12 @@ Present to user
 docker-compose up
 ```
 
+Create the database
+```sh
+sh rails.sh bundle exec rake db:create
+sh rails.sh bundle exec rails db:migrate
+```
+
 ```sh
 sh rails.sh
 ```
