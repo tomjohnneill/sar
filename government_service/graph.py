@@ -1,4 +1,4 @@
-import sys, csv
+import sys, csv, json
 from PIL import Image
 
 def chunks(l, n):
@@ -18,10 +18,12 @@ def closest_point(line, x_find):
             _, y_prev = line[i - 1]
             return (y + y_prev) / 2.0
 
-brmas = {row['BRMAno']: row for row in csv.DictReader(open('brma.csv'))}
+brmas_out = {}
 
-for brma_id in sys.argv[1:]:
-    brma = brmas[brma_id]
+for brma in csv.DictReader(open('brma.csv')):
+    brma_id = brma['BRMAno']
+
+    print >> sys.stderr, brma['BRMAname']
 
     im = Image.open('graphs/BRMA_%s_beds_0.gif' % brma_id)
     pixels = im.load()
@@ -35,11 +37,11 @@ for brma_id in sys.argv[1:]:
         col = chunks([pixels[x,y] for y in xrange(height)], 10)
         return any(all(pixel == gray for pixel in col_chunk) for col_chunk in col)
 
-    x_origin, x_last = [x for x in xrange(width) if is_x_axis(x)]
+    x_origin, x_end = [x for x in xrange(width) if is_x_axis(x)]
 
     line = []
     # get orange line, x shifted by x_origin and y inveresed
-    for x in xrange(x_last):
+    for x in xrange(x_origin, x_end):
         for y in xrange(height):
             if pixels[x, y] == orange:
                 line.append((x - x_origin, height - y))
@@ -48,16 +50,20 @@ for brma_id in sys.argv[1:]:
     x_first, y_first = line[0]
     x_last, y_last = line[-1]
 
-    x_range = x_last - x_first
-    y_range = y_last - y_first
+    min_rent_price = float(brma['minRent'])
+    max_rent_price = float(brma['maxRent'])
+    max_num_rents = float(brma['nRents'])
 
-    min_rent = float(brma['minRent'])
-    max_rent = float(brma['maxRent'])
-    num_rents = float(brma['nRents'])
+    x_step = max_num_rents / (x_last - x_first)
+    y_step = (max_rent_price - min_rent_price) / (y_last - y_first)
 
-    x_step = num_rents / x_range
-    y_step = (max_rent - min_rent) / y_range
-
+    values = []
     for x in linspace(x_first, x_last, 100):
         y = closest_point(line, x)
-        print x * x_step, (y - y_first) * y_step + min_rent
+        num_rents = x * x_step
+        rent_price = round((y - y_first) * y_step + min_rent_price, 2)
+        values.append((num_rents, rent_price))
+
+    brmas_out[brma_id] = values
+
+print json.dumps(brmas_out)
