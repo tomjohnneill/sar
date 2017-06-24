@@ -18,6 +18,7 @@ module SAR
       def real_rent_threshold
         10
       end
+
       def next_page
         unless is_last?
           @response.at(xpath_next_page_link)
