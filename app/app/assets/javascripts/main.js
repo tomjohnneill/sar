@@ -77,17 +77,27 @@ function render(data) {
                   data: data.rent_distribution.values.map(function (p) {
                       return {'x': p[0], 'y': p[1]};
                   }),
-                  fill: false
+                  fill: false,
+                    pointRadius: 0
                 },
                 {
-                    data: [data.rent_distribution.lha_rate]
+                  borderColor: "transparent",
+                  backgroundColor: "#3e9500",
+                  data: [{
+                      'x': data.rent_distribution.lha_rate[0],
+                      'y': data.rent_distribution.lha_rate[1]
+                  }, {
+                      'x': data.rent_distribution.values[30][0],
+                      'y': data.rent_distribution.values[30][1]
+                  }],
+                  fill: false,
+                    pointRadius: 10
                 }
             ]
         },
         options: {
           responsive: false,
           legend: { display: false },
-          elements: { point: { radius: 0 } },
           title: {
                 display: true,
                 text: 'Government distribution'
@@ -99,9 +109,9 @@ function render(data) {
         }
     });
 
-    document.querySelector('.js-stats').innerHTML =
-        'The rate in this area is £' + data.government_allowance + '<br /><br />' +
+    document.querySelector('.js-stats').innerHTML = 
+        'Your area is ' + data.brma + '. The rate in this area is £' + data.government_allowance + '<br /><br />' +
         'Our research shows that you can afford ' +
-        (data.rooms_below_threshhold / data.number_rooms).toFixed(1) + '%' +
-        ' of available homes.';
+        (data.rooms_below_threshhold / data.number_rooms).toFixed(1) + '% ' +
+        'of available homes.';
 }
