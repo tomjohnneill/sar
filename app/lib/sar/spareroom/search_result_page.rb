@@ -6,7 +6,7 @@ module SAR
         @response.search(xpath_price_within_comments).each do |element|
           price = parse_price(element)
           unless price.empty?
-            results << price
+            results << (price.to_i)
           end
         end
       end

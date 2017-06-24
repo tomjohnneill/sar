@@ -17,7 +17,7 @@ module SAR
       private
 
       def find_by(brma_number)
-        base_data = parsed_csv.find { |row| row['BRMAno'].to_i == brma_number }
+        base_data = parsed_csv.find { |row| row['BRMAno'].to_i == brma_number.to_i }
         rent_data = rent_data[brma_number]
 
         [base_data, rent_data]

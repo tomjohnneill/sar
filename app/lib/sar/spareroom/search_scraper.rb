@@ -7,8 +7,10 @@ module SAR
 
         puts "Search Index Postcode: #{postcode}"
 
-        paginate = SearchResultPaginator.new(agent, index_response)
-        paginate.run
+        data = SearchResultPaginator.new(agent, index_response).run
+
+        insights = Insights.new(data)
+        insights.to_json
       end
 
       def agent

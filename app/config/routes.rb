@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :price_discrepancy_reports, only: [:index, :create]
-
   root to: 'static#index'
+  get '/report', to: 'price_discrepancy_reports#show'
 end

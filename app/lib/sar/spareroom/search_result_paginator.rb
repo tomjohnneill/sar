@@ -8,6 +8,10 @@ module SAR
 
       def run
         scrap_page
+        flattened_results
+      end
+
+      def flattened_results
         results.flatten
       end
 
@@ -20,7 +24,6 @@ module SAR
       def scrap_page
         page = SearchResultPage.new(@response)
         results << page.results
-
 
         puts "Fetched URI: #{@response.uri}"
         puts "HTTP Response: #{@response.code}"
