@@ -8,11 +8,16 @@ module SAR
           unless price.empty?
             price_as_int = price.to_i
             price_pw = convert_display_price_to_pw(price_as_int, element)
-            results << (price_pw)
+            if price_pw > real_rent_threshold
+              results << (price_pw)
+            end
           end
         end
       end
 
+      def real_rent_threshold
+        10
+      end
       def next_page
         unless is_last?
           @response.at(xpath_next_page_link)
