@@ -14,6 +14,7 @@ class PriceDiscrepancyReportsController < ApplicationController
           lowest_rent: spareroom[:lowest_rent],
           mean_rent: spareroom[:mean_rent],
           median_rent: spareroom[:median_rent],
+          data_points: spareroom[:data],
           rooms_below_threshold: rooms_below_threshold
         }
       },
