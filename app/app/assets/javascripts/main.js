@@ -1,7 +1,7 @@
 document.forms.lookup.addEventListener('submit', function (evt) {
     evt.preventDefault();
     var xhr = new XMLHttpRequest();
-    var url = window.location.protocol + window.location.host + "/report?postcode=" + document.forms.lookup.elements.postcode.value;
+    var url = window.location.protocol + '//' + window.location.host + "/report?postcode=" + document.forms.lookup.elements.postcode.value;
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
           var roomData = JSON.parse(xhr.responseText);
