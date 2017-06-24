@@ -112,6 +112,6 @@ function render(data) {
     document.querySelector('.js-stats').innerHTML = 
         'Your area is ' + data.brma + '. The rate in this area is £' + data.government_allowance + '<br /><br />' +
         'Our research shows that you can afford ' +
-        (data.rooms_below_threshhold / data.number_rooms).toFixed(1) + '% ' +
+        (data.rooms_below_threshhold / data.number_rooms * 100).toFixed(1) + '% ' +
         'of available homes.';
 }
