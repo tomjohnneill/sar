@@ -2,7 +2,7 @@ module SAR
   module Spareroom
     class Insights
       def initialize(data)
-        @data = data
+        @data = data.sort
       end
 
       def mean
@@ -10,17 +10,15 @@ module SAR
       end
 
       def median
-        sorted = @data.sort
-        len = sorted.length
-        (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
+        (@data[(total_results - 1) / 2] + @data[total_results / 2]) / 2.0
       end
 
       def highest
-        @data.sort.last
+        @data.last
       end
 
       def lowest
-        @data.sort.first
+        @data.first
       end
 
       def total_results
