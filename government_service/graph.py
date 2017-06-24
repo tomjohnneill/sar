@@ -18,6 +18,14 @@ def closest_point(line, x_find):
             _, y_prev = line[i - 1]
             return (y + y_prev) / 2.0
 
+def closest_point_y(line, y_find):
+    for i, (x, y) in enumerate(line):
+        if y == y_find:
+            return x
+        if y_find < y:
+            x_prev, _ = line[i - 1]
+            return (x + x_prev) / 2.0
+
 brmas_out = {}
 
 for brma in csv.DictReader(open('brma.csv')):
@@ -64,6 +72,11 @@ for brma in csv.DictReader(open('brma.csv')):
         rent_price = round((y - y_first) * y_step + min_rent_price, 2)
         values.append((num_rents, rent_price))
 
-    brmas_out[brma_id] = values
+    lha_x = closest_point_y(line, float(brma['LHArate']) / y_step)
+
+    brmas_out[brma_id] = {
+        'values': values,
+        'lha_rate': [lha_x * x, brma['LHArate']]
+    }
 
 print json.dumps(brmas_out)
