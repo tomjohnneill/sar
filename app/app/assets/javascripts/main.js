@@ -1,7 +1,7 @@
 document.forms.lookup.addEventListener('submit', function (evt) {
     evt.preventDefault();
     var xhr = new XMLHttpRequest();
-    var url = `/report?postcode=${document.forms.lookup.elements.postcode.value}`;
+    var url = 'http://' + window.location.host + `/report?postcode=${document.forms.lookup.elements.postcode.value}`;
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
           var roomData = JSON.parse(xhr.responseText);
@@ -14,25 +14,40 @@ document.forms.lookup.addEventListener('submit', function (evt) {
 });
 
 function render(data) {
+    document.querySelector('.js-results').style.display = 'block';
+
     var ctx = document.getElementById("comparison").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
-            labels: ['LHA allowance', 'Spare rooms average'],
+            labels: [
+                'Allowance',
+                'Lowest',
+                'Highest'
+            ],
             datasets: [
                 {
-                  label: "Price",
+                  label: "LHA",
                   backgroundColor: "#3e95cd",
                   data: [
-                      data.government_allowance,
-                      data.results.spareroom.median_rent
+                      data.rent_distribution[50][1],
+                      data.rent_distribution[0][1],
+                      data.rent_distribution.slice(-1)[0][1]
+                  ]
+                },
+                {
+                  label: "Spare room",
+                  backgroundColor: "#8e5ea2",
+                  data: [
+                      data.results.spareroom.median_rent,
+                      data.results.spareroom.lowest_rent,
+                      data.results.spareroom.highest_rent
                   ]
                 }
             ]
         },
         options: {
           responsive: false,
-          legend: { display: false },
           title: {
                 display: true,
                 text: 'Is the Housing Allowance really enough?'
@@ -69,6 +84,9 @@ function render(data) {
             }
         }
     });
-}
 
-console.log('here');
+    document.querySelector('.js-stats').textContent = `
+        Our research shows that only ${data.rooms_below_threshhold} are
+        affordable out of ${data.number_rooms} available.
+    `;
+}

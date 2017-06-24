@@ -1,10 +1,18 @@
+<h2>Search your postcode</h2>
 <form name="lookup">
     <input type="text" name="postcode" />
-    <button>Go</button>
+    <button class="btn btn-primary" style="margin-top: 20px"><span>Go</span></button>
 </form>
-<div class="results">
-    <canvas id="comparison" width="400" height="400"></canvas>
-    <canvas id="distribution" width="800" height="400"></canvas>
+<div class="js-results" style="display: none">
+    <div>
+        <h3>The key stats</h3>
+        <canvas style="float: right;margin-bottom: 60px" id="comparison" width="700" height="300"></canvas>
+        <p class="js-stats"></p>
+    </div>
+    <div style="border-top: 1px solid rgba(54, 54, 54, 0.5); clear: both">
+        <h3>How does the distribution compare?</h3>
+        <canvas id="distribution" width="800" height="400" style="margin: 0 auto"></canvas>
+    </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dot/1.1.2/doT.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
