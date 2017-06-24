@@ -3,10 +3,12 @@ module SAR
     class SearchResultPage
       def initialize(response)
         @response = response
-        @response.search(xpath_price_within_comments).each do |element|
+        @response.search(xpath_price_within_listings).each do |element|
           price = parse_price(element)
           unless price.empty?
-            results << (price.to_i)
+            price_as_int = price.to_i
+            price_pw = convert_display_price_to_pw(price_as_int, element)
+            results << (price_pw)
           end
         end
       end
@@ -32,15 +34,32 @@ module SAR
       private
 
       def parse_price(element)
-        element.to_s.gsub(/\D/, '')
+        element.xpath('//comment()').remove
+        element.to_s.scan(/\d+/).first
+      end
+
+      def convert_display_price_to_pw(price, element)
+        if is_pcm?(element)
+          return (price * 12)/52
+        else
+          return price
+        end
+      end
+
+      def is_pcm?(element)
+        if element.to_s.include?("pcm")
+          return true
+        else
+          return false
+        end
       end
 
       def xpath_next_page_link
         '//*[@id="maincontent"]/div[2]/ul[2]/li/strong/a'
       end
 
-      def xpath_price_within_comments
-        '//*[@id="maincontent"]/ul/li/article/header[1]/a/strong/comment()'
+      def xpath_price_within_listings
+        '//*[@id="maincontent"]/ul/li/article/header[1]/a/strong'
       end
 
     end
