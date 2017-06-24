@@ -58,6 +58,7 @@ for brma in csv.DictReader(open('brma.csv')):
     x_first, y_first = line[0]
     x_last, y_last = line[-1]
 
+    lha_rate = float(brma['LHArate'])
     min_rent_price = float(brma['minRent'])
     max_rent_price = float(brma['maxRent'])
     max_num_rents = float(brma['nRents'])
@@ -72,11 +73,11 @@ for brma in csv.DictReader(open('brma.csv')):
         rent_price = round((y - y_first) * y_step + min_rent_price, 2)
         values.append((num_rents, rent_price))
 
-    lha_x = closest_point_y(line, float(brma['LHArate']) / y_step)
+    lha_x = closest_point_y(line, lha_rate / y_step)
 
     brmas_out[brma_id] = {
         'values': values,
-        'lha_rate': [lha_x * x, brma['LHArate']]
+        'lha_rate': [lha_x * x_step, lha_rate]
     }
 
 print json.dumps(brmas_out)
