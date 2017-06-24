@@ -55,25 +55,25 @@ for brma in csv.DictReader(open('brma.csv')):
                 line.append((x - x_origin, height - y))
                 break
 
-    x_first, y_first = line[0]
-    x_last, y_last = line[-1]
+    x_min, y_min = line[0]
+    x_max, y_max = line[-1]
 
     lha_rate = float(brma['LHArate'])
     min_rent_price = float(brma['minRent'])
     max_rent_price = float(brma['maxRent'])
     max_num_rents = float(brma['nRents'])
 
-    x_step = max_num_rents / (x_last - x_first)
-    y_step = (max_rent_price - min_rent_price) / (y_last - y_first)
+    x_step = max_num_rents / (x_max - x_min)
+    y_step = (max_rent_price - min_rent_price) / (y_max - y_min)
 
     values = []
-    for x in linspace(x_first, x_last, 100):
+    for x in linspace(x_min, x_max, 100):
         y = closest_point(line, x)
         num_rents = x * x_step
-        rent_price = round((y - y_first) * y_step + min_rent_price, 2)
+        rent_price = round((y - y_min) * y_step + min_rent_price, 2)
         values.append((num_rents, rent_price))
 
-    lha_x = closest_point_y(line, lha_rate / y_step)
+    lha_x = closest_point_y(line, (lha_rate - min_rent_price) * y_step + y_min)
 
     brmas_out[brma_id] = {
         'values': values,
