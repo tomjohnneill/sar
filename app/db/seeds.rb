@@ -1,1 +1,1 @@
-require_relative 'seeds/postcode_2_bmra.rb'
+require_relative 'seeds/postcode_2_brma.rb'

@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20170624103141) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "postcode2_bmras", force: :cascade do |t|
+  create_table "postcode2_brmas", force: :cascade do |t|
     t.string "postcode"
-    t.text "bmra"
+    t.text "brma"
     t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
