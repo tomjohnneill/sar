@@ -22,13 +22,24 @@
           },
           "number_rooms": 620,
           "rooms_below_threshhold": 0
+        },
+        {
+          "brma": "Shoreditch",
+          "government_allowance": 700,
+          "average_rent": {
+            "spareroom": 1000,
+            "zoopla": 1100
+          },
+          "number_rooms": 900,
+          "rooms_below_threshhold": 5
         }
       ]);
 
       (function () {
         JSON.parse(response).forEach(home => {
           brma.push(home.brma);
-          data.push({"Government allowance": home.government_allowance}, {"Spareroom": home.average_rent.spareroom})
+          data.push({label: "Government allowance", data: [home.government_allowance]},
+                    {label: "Spareroom", data: [home.average_rent.spareroom]})
         });
       }) ();
 
@@ -37,31 +48,19 @@
           type: 'horizontalBar',
           data: {
             labels: brma,
-            datasets: [{
-              label: 'apples',
-              data: [12, 19, 3, 17, 28, 24, 7]
-            },
-            {
-              label: 'oranges',
-              data: [30, 29, 5, 5, 20, 3, 10]
-            }]
+            // datasets: [
+            //   {
+            //     label: "Africa",
+            //     backgroundColor: "#3e95cd",
+            //     data: [133,221,783,2478]
+            //   }, {
+            //     label: "Europe",
+            //     backgroundColor: "#8e5ea2",
+            //     data: [408,547,675,734]
+            //   }
+            // ]
+            datasets: data
           },
-          backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-              'rgba(255,99,132,1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-          ],
           borderWidth: 1,
           options: {
             responsive: false,
