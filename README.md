@@ -7,12 +7,18 @@ Hello
   {
     "brma": "Some Name",
     "government_allowance": 590,
-    "average_rent": {
-      "spareroom": 830,
-      "zoopla": 870
+    "results": {
+      "spareroom": {
+        "total_results": 1099,
+        "highest_rent": 830,
+        "lowest_rent": 80,
+        "mean_rent": 394,
+        "median_rent": 215,
+        "rooms_below_threshold": 5
+      }
     },
-    "number_rooms": 620,
-    "rooms_below_threshhold": 0
+    "number_rooms": 1099,
+    "rooms_below_threshhold": 5
   }
 ]
 ```
@@ -37,6 +43,12 @@ Present to user
 
 ```sh
 docker-compose up
+```
+
+Create the database
+```sh
+sh rails.sh bundle exec rake db:create
+sh rails.sh bundle exec rails db:migrate
 ```
 
 ```sh

@@ -2,7 +2,7 @@ module SAR
   class ExportSpareroomPostcodePricing
     def run
       postcodes.each do |postcode|
-        p postcode
+        puts SAR::Spareroom.find_price_by_postcode(postcode)
       end
     end
 
