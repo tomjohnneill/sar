@@ -85,9 +85,8 @@ function render(data) {
         }
     });
 
-    document.querySelector('.js-stats').textContent = `
-        Our research shows that you can afford
-        ${(data.rooms_below_threshhold / data.number_rooms).toFixed(1)}%
-        of available homes.
-    `;
+    document.querySelector('.js-stats').textContent = "" +
+        "Our research shows that you can afford" +
+        (data.rooms_below_threshhold / data.number_rooms).toFixed(1) + "%" +
+        "of available homes.";
 }
