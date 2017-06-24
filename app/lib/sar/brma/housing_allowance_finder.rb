@@ -18,7 +18,7 @@ module SAR
 
       def find_by(brma_number)
         base_data = parsed_csv.find { |row| row['BRMAno'].to_i == brma_number.to_i }
-        rent_data = rent_data[brma_number]
+        rent_data = get_rent_data[brma_number]
 
         [base_data, rent_data]
       end
@@ -27,7 +27,7 @@ module SAR
         CSV.read(Rails.root.join('fixtures', 'brma.csv'), headers: true)
       end
 
-      def rent_data
+      def get_rent_data
         file = File.read(Rails.root.join('fixtures', 'rents.json'))
         JSON.parse(file)
       end
