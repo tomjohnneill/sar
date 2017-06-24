@@ -3,9 +3,6 @@ class PriceDiscrepancyReportsController < ApplicationController
   end
 
   def show
-
-p spareroom
-
     render json: {
       brma: brma[:name],
       government_allowance: housing_allowance[:lha_rate],
