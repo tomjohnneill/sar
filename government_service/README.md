@@ -7,7 +7,7 @@ You will need the (http://www.pythonware.com/products/pil/)[Python Imaging Libra
 python graphs.py > data.json
 ```
 
-graphIt_transposed_final.py is a tweaked version - slightly different calibration (so the points are a bit different), transposes the output and sends to csv instead of json. (This is basically designed to store the data offline rather than integrate it into an online app.)
+graphIt_transposed_final.py is a tweaked version - slightly different calibration (so the points are a bit different), transposes the output and sends to csv instead of json. (This is basically designed to store the data offline rather than integrate it into an online app.) Also - this version is in Python 3 instead of Python 2.
 
 ***
 
