@@ -37,6 +37,50 @@ Calculate Spareroom average rent for postcode
 Compare discrepancy between goverment allowance and Spareroom average
 Present to user
 
+## Windows 10 install Docker and start app:
+
+Download Docker Toolbox: https://www.docker.com/products/docker-toolbox
+(untick virtual box)
+
+Download latest version of virtual box
+
+Change your virtualization to enabled: http://gateway-us.custhelp.com/app/answers/detail/a_id/37064/~/windows-10%3A-access-the-uefi-bios
+
+Run Docker Toolbox quick start (allow access to everything on the administrator request popups)
+
+On your git bash type in:
+ssh docker@[ip] - ip is whatever showed when you created the virtual machine
+
+Password: tcuser
+
+Type the following command to install docker compose:
+tce-load -wi python && curl https://bootstrap.pypa.io/get-pip.py | \
+  sudo python - && sudo pip install -U docker-compose
+
+git clone https://github.com/homelesshack/sar
+
+cd sar
+cd app
+docker-compose up
+
+sh rails.sh bundle install
+
+sh rails.sh bundle exec rake db:create
+sh rails.sh bundle exec rails db:migrate
+
+sh rails.sh
+
+Go to virtualbox GUI -> default -> settings -> Network -> Advanced -> Port Forwarding -> 
+
+Add a new entry to the Port Forwarding rules:
+'web' 
+'TCP' 
+Host IP: whatever it says on the console once you started the app 
+port: ditto. 
+guest port: 3000.
+
+Then in the browser go to localhost:3000
+
 # Rails
 
 Install manual for OSX and Ubuntu.
@@ -48,6 +92,9 @@ sudo apt install docker-compose
 On **Ubuntu** I had to use `sudo` for the following commands. On **OSX** you should not.
 
 ## Booting the app
+
+cd sar
+cd app
 
 ```sh
 docker-compose up
