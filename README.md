@@ -39,10 +39,23 @@ Present to user
 
 # Rails
 
+Install manual for OSX and Ubuntu.
+
+## On Ubuntu 17.04
+```sh
+sudo apt install docker-compose
+```
+On **Ubuntu** I had to use `sudo` for the following commands. On **OSX** you should not.
+
 ## Booting the app
 
 ```sh
 docker-compose up
+```
+
+Install ruby bundles
+```sh
+sh rails.sh bundle install
 ```
 
 Create the database
