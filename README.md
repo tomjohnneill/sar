@@ -43,9 +43,14 @@ Install manual for OSX and Ubuntu.
 
 ## On Ubuntu 17.04
 ```sh
-sudo apt install docker-compose
+sudo apt install docker-compose docker.io
 ```
-On **Ubuntu** I had to use `sudo` for the following commands. On **OSX** you should not.
+To prevent to use `sudo` for docker according this [description](https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo) run the following commands:
+```sh
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+newgrp docker
+```
 
 ## Booting the app
 
