@@ -64,6 +64,12 @@ sh rails.sh bundle exec rake db:create
 sh rails.sh bundle exec rails db:migrate
 ```
 
+Fill the database with data
+```sh
+sh rails.sh bundle exec rails db:seed
+```
+
+Run the web app
 ```sh
 sh rails.sh
 ```
