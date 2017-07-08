@@ -49,8 +49,8 @@ To prevent to use `sudo` for docker according this [description](https://askubun
 ```sh
 sudo groupadd docker
 sudo gpasswd -a $USER docker
-newgrp docker
 ```
+**Now log out/in to activate the changes to groups**
 
 ## Booting the app
 
