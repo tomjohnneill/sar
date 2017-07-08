@@ -49,6 +49,7 @@ On **Ubuntu** I had to use `sudo` for the following commands. On **OSX** you sho
 
 ## Booting the app
 
+Creates the docker container
 ```sh
 docker-compose up
 ```
@@ -84,4 +85,12 @@ sh rails.sh bundle exec rails db:migrate
 
 ```sh
 git subtree push --prefix app heroku master
+```
+
+## Uninstall
+Stop the application. **(Ctrl-C)**
+
+The following command removes the docker container
+```sh
+docker-compose rm
 ```
