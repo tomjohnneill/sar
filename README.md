@@ -70,7 +70,7 @@ sh rails.sh bundle exec rake db:create
 sh rails.sh bundle exec rails db:migrate
 ```
 
-Fill the database with data
+Fill the database with data (may take 2-3 minutes)
 ```sh
 sh rails.sh bundle exec rails db:seed
 ```
