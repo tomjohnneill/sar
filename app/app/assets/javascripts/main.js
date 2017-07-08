@@ -57,7 +57,7 @@ function render(data) {
             ]
         },
         options: {
-          responsive: false,
+          responsive: true,
           title: {
                 display: true,
                 text: 'Is the Housing Allowance really enough?'
@@ -96,7 +96,7 @@ function render(data) {
             ]
         },
         options: {
-          responsive: false,
+          responsive: true,
           legend: { display: false },
           title: {
                 display: true,

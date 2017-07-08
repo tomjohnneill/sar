@@ -6,12 +6,18 @@
 <div class="js-results" style="display: none">
     <div>
         <h3>The key stats</h3>
-        <canvas style="float: right;margin-bottom: 60px" id="comparison" width="700" height="300"></canvas>
+
+        <div class="chart-container-comparison" style="float: right;margin-bottom: 60px; width:700px; height:300px; ">
+          <canvas id="comparison"></canvas>
+        </div>
+
         <p class="js-stats"></p>
     </div>
     <div style="border-top: 1px solid rgba(54, 54, 54, 0.5); clear: both">
         <h3>How does the distribution compare?</h3>
-        <canvas id="distribution" width="800" height="400" style="margin: 0 auto"></canvas>
+        <div class="chart-container-distribution" style="margin: 0 auto; width:800px; height:400px; ">
+          <canvas id="distribution"></canvas>
+        </div>
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dot/1.1.2/doT.min.js"></script>
