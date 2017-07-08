@@ -38,6 +38,38 @@ Broad Rental Market Areas
 * Compare discrepancy between goverment allowance and Spareroom average
 * Present to user
 
+# Windows
+
+Download Docker Toolbox: https://www.docker.com/products/docker-toolbox
+(untick virtual box)
+
+Download latest version of virtual box
+
+Change your virtualization to enabled: http://gateway-us.custhelp.com/app/answers/detail/a_id/37064/~/windows-10%3A-access-the-uefi-bios
+
+Run Docker Toolbox quick start (allow access to everything on the administrator request popups)
+
+ssh docker@[ip] - ip is 
+Password: tcuser
+
+tce-load -wi python && curl https://bootstrap.pypa.io/get-pip.py | \
+  sudo python - && sudo pip install -U docker-compose
+
+git clone https://github.com/homelesshack/sar
+
+cd sar
+cd app
+docker-compose up
+
+Csaba's thing
+
+database commands
+
+Go to virtualbox GUI -> default -> settings -> Network -> Advanced -> Port Forwarding -> 'web' 'TCP' Host IP: whatever it says on the console once you started the app port: ditto. guest port: 3000.
+
+Then in the browser go to localhost:3000
+
+
 # Rails
 
 Install manual for OSX and Ubuntu.
